@@ -20,7 +20,7 @@
 
   --font-display: 'Fraunces', Georgia, serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: 'IBM Plex Mono', Consolas, monospace;
+  --font-mono: ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, 'Liberation Mono', monospace;
 
   --wrap: 1360px;
 }
@@ -686,6 +686,12 @@ section {
 .field textarea {
   resize: vertical;
   min-height: 110px;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: var(--slate);
+  opacity: 1;
 }
 
 .field input:focus,
