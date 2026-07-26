@@ -13,7 +13,7 @@
   --line-soft: #16212f;
   --ice: #edf2f5;
   --slate: #8a97a6;
-  --slate-dim: #5c6a79;
+  --slate-dim: #7a8794;
   --ember: #ff6b35;
   --ember-dim: #d9552a;
   --teal: #2dd4bf;
@@ -52,6 +52,31 @@ body {
 img {
   max-width: 100%;
   display: block;
+}
+
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -60px;
+  background: var(--ember);
+  color: #1a0d03;
+  padding: 10px 18px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 1000;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 16px;
+}
+
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 3px;
 }
 
 a {
@@ -667,6 +692,7 @@ section {
 .field textarea:focus {
   outline: none;
   border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.25);
 }
 
 .field.has-error input,
