@@ -1,16 +1,24 @@
 // ---------- skyline scroll progress ----------
 const skylineLine = document.getElementById('skylineLine');
-const totalLength = skylineLine.getTotalLength();
+let totalLength = skylineLine.getTotalLength();
 skylineLine.style.strokeDasharray = totalLength;
 skylineLine.style.strokeDashoffset = totalLength;
 
 function updateSkyline() {
   const scrollTop = window.scrollY;
   const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const progress = docHeight > 0 ? scrollTop / docHeight : 0;
+  const progress = docHeight > 0 ? Math.min(Math.max(scrollTop / docHeight, 0), 1) : 0;
   const offset = totalLength - progress * totalLength;
   skylineLine.style.strokeDashoffset = offset;
 }
+
+// fonts finishing their load can change the page height slightly,
+// so recalc once everything has actually settled
+window.addEventListener('load', () => {
+  totalLength = skylineLine.getTotalLength();
+  skylineLine.style.strokeDasharray = totalLength;
+  updateSkyline();
+});
 
 // ---------- sticky header on scroll ----------
 const header = document.getElementById('siteHeader');

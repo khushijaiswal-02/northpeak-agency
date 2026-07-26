@@ -126,6 +126,7 @@ em {
   height: 3px;
   z-index: 999;
   pointer-events: none;
+  overflow: hidden;
 }
 
 .skyline-progress svg {
@@ -137,10 +138,10 @@ em {
 .skyline-progress polyline {
   fill: none;
   stroke: var(--teal);
-  stroke-width: 6;
+  stroke-width: 3;
   vector-effect: non-scaling-stroke;
-  stroke-dasharray: 4200;
-  stroke-dashoffset: 4200;
+  stroke-dasharray: 3000;
+  stroke-dashoffset: 3000;
   transition: stroke-dashoffset 0.1s linear;
 }
 
