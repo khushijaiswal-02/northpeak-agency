@@ -8,11 +8,17 @@ Before I started, I want to be honest that the site was already in a decent star
 
 ### Removed font weights I wasn't actually using
 
-When I looked back at my Google Fonts link, I was importing a bunch of font weights that I never actually used in my CSS. For example I was importing Fraunces in weight 600 but when I checked my CSS I only use Fraunces at 400 and 500. Same thing with IBM Plex Mono, I was importing weight 500 but every place I use that font in my CSS it's just the default 400 weight.
+When I looked back at my Google Fonts link, I was importing a bunch of font weights that I never actually used in my CSS. For example I was importing Fraunces in weight 600 but when I checked my CSS I only use Fraunces at 400 and 500. Same thing with IBM Plex Mono, I was importing weight 500 but every place I use that font in my CSS it's just the default 400 weight. I also went back a second time and found I was still requesting Inter at weight 500 even though I never use that one either, my body text uses 400, 600, and 700.
 
-So I removed the weights I don't use from the font link. This means the browser has to download fewer font files before it can show the text properly.
+So I removed every weight I don't use from the font link. This means the browser has to download fewer font files before it can show the text properly.
 
 What this bought me: fewer files to download means the fonts load a bit faster, which helps with First Contentful Paint (basically how fast something useful shows up on screen).
+
+### Made the font stylesheet non blocking
+
+This was the bigger fix. My font link was render blocking, meaning the browser had to stop and wait for that Google Fonts stylesheet to finish loading before it could paint anything on the page at all. I changed it to load with `media="print"` and then switch to `media="all"` once it's done loading, which is a common trick to stop a stylesheet from blocking the page. I also added a `<noscript>` fallback so it still loads normally if someone has JavaScript disabled.
+
+What this bought me: the page can start painting content immediately using a fallback font instead of sitting blank while it waits on an external font file, which is what actually brought my performance score back up.
 
 ### Kept font-display swap
 
@@ -58,4 +64,4 @@ I also didn't minify my CSS or JS files. I looked into this but my files are pre
 
 ## Live URL
 
-northpeaks-agency.netlify.app
+https://northpeaks-agency.netlify.app/
